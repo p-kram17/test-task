@@ -1,6 +1,5 @@
 import { 
   Tabs,
-  TabsContent,
   TabsList,
   TabsTrigger
 } from "@/components/ui/tabs"
@@ -14,7 +13,15 @@ export const TabList = () => {
       className="flex items-center max-w-[775px] w-full"
     >
       <TabsList className="flex items-center bg-[rgba(250,250,250,1)] min-h-[55px]">
-        {tabList.map(value => <TabsTrigger className="focus:bg-[rgba(255,255,255,1)] px-[25px] py-[10px] focus:shadow-md  text-tw-orange-900 text-4" value={value}>{value}</TabsTrigger>)}
+        {tabList.map(value =>   
+          <TabsTrigger 
+            key={value}
+            className="focus:bg-[rgba(255,255,255,1)] px-[25px] py-[10px] focus:shadow-md  text-tw-orange-900 text-4"
+            value={value}
+          >
+            {value}
+          </TabsTrigger>
+        )}
       </TabsList>
     </Tabs>
   </div>
