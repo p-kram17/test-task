@@ -9,7 +9,7 @@ export const HeaderWrapper:FC = () => {
   
     return  ( 
       <> 
-      <div className="flex flex-wrap mx-[67px] my-[44px] gap-[40px] items-center"> 
+      <div className="flex mx-[67px] my-[44px] gap-[40px] items-center"> 
         <HeaderLogo>
           <span className={`text-black ${nunito900.className} text-[24px] uppercase`}>Next Pizza</span>
           <span className={`${nunito400.className} text-4 text-tw-metal-300`}>смачніше уже нікуди </span>
