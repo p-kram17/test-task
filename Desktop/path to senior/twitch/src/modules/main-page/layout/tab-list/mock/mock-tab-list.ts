@@ -1,0 +1,1 @@
+export const tabList = ["All","Meat","Spicy","Sweet","Vegeterians","Chiken","Also"];
