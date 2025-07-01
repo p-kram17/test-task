@@ -82,6 +82,7 @@
   --color-tw-metal-300:rgba(123, 123, 123, 1);
   --color-tw-orange-900:rgba(254, 95, 0, 1);
   --color-tw-whitee-100:rgba(250, 250, 250, 1);
+  --color-tw-white-200:rgba(246,246,246,1);
 }
 
 @media (prefers-color-scheme: dark) {
