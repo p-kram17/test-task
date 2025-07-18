@@ -1,8 +1,6 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import ky from "ky";
-import { current } from "immer";
 
 
 export function LibPractice() {
@@ -10,22 +8,11 @@ export function LibPractice() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const data = new URLSearchParams({ 
-      key:"naruto",
-      suka:"pizda",
-    });
 
-    const fetchData = async () => {
-      try {
-        const response = await ky.get("https://jsonplaceholder.typicode.com/comments");
-        const data = await response.json();
-        setIsLoading(true);
-        console.log(data);
-      } catch (error) {
-        console.error("Помилка:", error);
-      }
-    };
-
+    const data = ky.get("GET https://jsonplaceholder.typicode.com/posts")
+    .then(data => data.json())
+    .catch(error => console.log(error));
+    
   }, []);
 
   return (
