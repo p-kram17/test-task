@@ -1,0 +1,133 @@
+# Inforce test task - Developer Onboarding Guide
+Table of Contents
+
+- 1. Introduction
+- 2. Project Structure
+- 3. Technology Stack
+- 4. Development Setup
+- 5. Run the App
+- 6. API Endpoints
+- 7. Code Style
+- 8. Troubleshooting
+
+## 1. Introduction
+
+Welcome to the Inforce test task project! This guide explains how to set up and run the app, where key code lives, and how the autocomplete, pagination, and posts listing work. The app is a single-page Next.js application with a small Express backend used to proxy and paginate data from jsonplaceholder.
+
+## 2. Project Structure
+Root level folders of interest:
+
+ - app/                                 # Next.js App Router entry (single page)
+ - backend/                             # Express server (pagination/search proxy)
+ - modules/                             # Feature modules (UI + logic)
+   - enter-page/
+     - page.tsx                         # Page container (UI only), uses hooks
+     - hooks/
+       - use-search.ts                  # Search state (term, notice, isSearching)
+       - use-posts.ts                   # Posts fetching, pagination, caching
+     - search-section/
+       - components/
+         - search-input.tsx             # Autocomplete input (logic)
+         - search-input-ui.tsx          # UI part of the input
+         - auto-complete-list.tsx       # Suggestions list
+       - hooks/
+         - use-search-input.ts          # Debounced suggestions + caching
+     - posts-list/
+       - post-list-wrapper.tsx          # Posts list (memoized rendering)
+     - pagination/
+       - pagination-wrapper.tsx         # Pagination controls (memoized)
+ - shared/
+   - lib/ky.ts                          # HTTP client (ky) pointing to backend
+   - shad-cn/                           # Shared UI primitives
+   - types/post.ts                      # Post type
+
+Single page composition: `app/page.tsx` renders `modules/enter-page/page.tsx`,
+which combines Search, List, and Pagination. A small inline notice is shown on submit.
+
+
+
+## 3. Technology Stack
+### Core
+- Next.js ^15
+- React ^19
+- TypeScript ^5
+- Express ^5
+
+### Data fetching
+- ky ^1.8 (frontend HTTP client)
+
+### Forms/validation (present but minimal use)
+- react-hook-form, zod
+
+### Dev tools
+- Biome (formatter + linter) — see `biome.json`
+- nodemon (backend dev)
+
+## 4. Development Setup
+### Prerequisites
+- Node.js 18.18+ or 20+
+
+### Install dependencies (root)
+```bash
+npm install
+```
+
+That installs both frontend and backend dependencies declared in the root `package.json`.
+
+## 5. Run the App
+- Backend (http://localhost:4000):
+  ```bash
+  npm run server:dev
+  # or: npm run server
+  # Health check: http://localhost:4000/health
+  ```
+- Frontend (http://localhost:3000):
+  ```bash
+  npm run dev
+  ```
+
+Environment variables are not required by default. CORS is configured to allow `http://localhost:3000`.
+
+## 6. API Endpoints
+Backend file: `backend/server.js`
+
+- `GET /posts?page=<n>&limit=<m>`
+  - Returns paginated posts from jsonplaceholder (default page=1, limit=10)
+- `GET /search?q=<term>`
+  - Returns up to 10 matching posts by title/body
+- `GET /health`
+  - Simple status check
+
+The backend caches posts for 5 minutes to reduce external requests.
+
+## 7. Code Style
+- Format and lint with Biome:
+  ```bash
+  npm run format
+  npm run lint
+  ```
+
+- Editor and style:
+  - `.editorconfig` — базові правила форматування (LF, 2 пробіли, обрізання пробілів)
+  - `biome.json` — форматер/лінтер, впорядкування імпортів
+
+Key files to review:
+- `app/page.tsx` — підключає `modules/enter-page/page.tsx`
+- `modules/enter-page/page.tsx` — контейнер сторінки (UI), інтегрує пошук/список/пагінацію
+- `modules/enter-page/search-section/components/search-input.tsx` — логіка autocomplete
+- `modules/enter-page/search-section/components/auto-complete-list.tsx` — список підказок
+- `modules/enter-page/posts-list/post-list-wrapper.tsx` — рендер постів (мемоізований)
+- `modules/enter-page/pagination/pagination-wrapper.tsx` — UI пагінації (мемоізований)
+
+Caching and LocalStorage:
+- `use-posts.ts` — кеш сторінок (useRef + Map) і `currentPage` у LocalStorage
+- `use-search.ts` та `use-search-input.ts` — `lastSearchTerm` та кеш підказок
+
+## 8. Troubleshooting
+If you have any problems setting up this project, please describe them here:
+
+- Problem 1: ...
+- Problem 2: ...
+- Problem 3: ...
+
+etc.
