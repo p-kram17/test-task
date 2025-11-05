@@ -1,0 +1,52 @@
+{
+  "tournaments": [
+    {
+      "id": 1,
+      "title": "Cyber Arena 2025",
+      "image": "/game-icon-1.jpg",
+      "description": "Кібер-турнір року з Fortnite, CS2 і Valorant. Призовий фонд — $50,000.",
+      "participants": 230,
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "title": "Pixel Cup",
+      "image": "/game-icon-2.jpg",
+      "description": "Ретро-баталії у 8-бітних іграх: Pac-Man, Mario, Sonic. Атмосфера ностальгії гарантована.",
+      "participants": 102,
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "title": "BattleZone Masters",
+      "image": "/game-icon-3.jpg",
+      "description": "Турнір для справжніх стратегів. League of Legends, Dota 2, Starcraft II — покажи, хто ти!",
+      "participants": 356,
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "title": "Mobile Legends Clash",
+      "image": "/game-icon-4.jpg",
+      "description": "Схрестіть мечі на екранах смартфонів. Турнір з Mobile Legends та Wild Rift.",
+      "participants": 190,
+      "status": "upcoming"
+    },
+    {
+      "id": 5,
+      "title": "VR Battle Fest",
+      "image": "/game-icon-5.jpg",
+      "description": "Турнір у віртуальній реальності. Beat Saber, Half-Life: Alyx, Superhot VR — все тут!",
+      "participants": 87,
+      "status": "upcoming"
+    },
+    {
+      "id": 6,
+      "title": "Indie Dev Jam",
+      "image": "/game-icon-6.jpg",
+      "description": "Подія для інді-геймерів. Гравці тестують нові ігри та змагаються за титул найкращого інноватора.",
+      "participants": 120,
+      "status": "completed"
+    }
+  ]
+}
